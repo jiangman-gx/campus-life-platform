@@ -6,28 +6,30 @@
 
 ## ✨ 功能截图
 
+> 图片托管于 GitHub Raw CDN，如无法加载请尝试刷新页面。
+
 ### 🏠 首页
-![首页](screenshot-home.png)
+![首页](https://raw.githubusercontent.com/jiangman-gx/campus-life-platform/master/screenshot-home.png)
 > 平台首页，展示校园生活四大核心功能入口：食堂点评、二手交易、失物招领、课程表
 
 ### 🔐 登录注册
-![登录页面](screenshot-auth.png)
+![登录页面](https://raw.githubusercontent.com/jiangman-gx/campus-life-platform/master/screenshot-auth.png)
 > 用户认证系统，支持注册和登录，JWT Token 保障安全，登录后导航栏显示用户名
 
 ### 🍽️ 食堂点评 + AI 总结
-![食堂AI总结](screenshot-canteen-ai.png)
+![食堂AI总结](https://raw.githubusercontent.com/jiangman-gx/campus-life-platform/master/screenshot-canteen-ai.png)
 > 查看各食堂评分评价，点击「🤖 AI总结」自动生成三句话口碑分析（整体口碑、推荐菜品、价格水平）
 
 ### 🔄 二手交易 + AI 描述
-![二手AI描述](screenshot-trade-ai.png)
+![二手AI描述](https://raw.githubusercontent.com/jiangman-gx/campus-life-platform/master/screenshot-trade-ai.png)
 > 浏览和发布二手商品，填写名称和价格后点击「🤖 AI帮我写描述」自动生成带 emoji 的活泼文案
 
 ### 🔍 失物招领
-![失物招领](screenshot-lostfound.png)
+![失物招领](https://raw.githubusercontent.com/jiangman-gx/campus-life-platform/master/screenshot-lostfound.png)
 > 查看和发布丢失/捡到物品信息，支持按类型筛选（丢失/捡到），最新发布排在前面
 
 ### 👤 个人中心
-![个人中心](screenshot-profile.png)
+![个人中心](https://raw.githubusercontent.com/jiangman-gx/campus-life-platform/master/screenshot-profile.png)
 > 个人中心页面，展示用户基本信息（建设中，更多功能即将上线）
 
 ---
