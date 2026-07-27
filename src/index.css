@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 卡片淡入动画 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out both;
+}
+
+/* 4个卡片依次延迟淡入 */
+.animate-fade-in:nth-child(1) { animation-delay: 0ms; }
+.animate-fade-in:nth-child(2) { animation-delay: 100ms; }
+.animate-fade-in:nth-child(3) { animation-delay: 200ms; }
+.animate-fade-in:nth-child(4) { animation-delay: 300ms; }

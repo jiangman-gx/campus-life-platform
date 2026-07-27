@@ -1,0 +1,289 @@
+<style>
+:root {
+  color-scheme: light;
+  --surface: #F7F7F8;
+  --surface-muted: #EFEFF2;
+  --text: #171717;
+  --text-muted: #52525B;
+  --border: rgba(23, 23, 23, 0.12);
+
+  --brand: #4B3FE3;
+  --brand-soft: #F2F7FF;
+  --brand-soft-strong: #E5EAFF;
+  --brand-text: #1A1759;
+  --brand-on: #FFFFFF;
+  --chart-series-1: #3C2ECA;
+  --chart-series-2: #A9AEFF;
+  --chart-series-3: #6F6FFF;
+  --chart-series-4: #22A5F7;
+  --chart-other: #D3D4DA;
+
+  --accent: #27D2BF;
+  --accent-soft: #EAFBF8;
+  --accent-text: #0F766E;
+
+  --radius: 8px;
+  --radius-card: 12px;
+  --radius-full: 999px;
+  --spacer-4: 4px;
+  --spacer-8: 8px;
+  --spacer-12: 12px;
+  --spacer-16: 16px;
+  --spacer-20: 20px;
+  --spacer-24: 24px;
+  --font-sans: "SF Pro Text", "PingFang SC", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-strong: 600;
+  --text-caption: 12px/18px;
+  --text-body: 14px/20px;
+  --text-title: 16px/24px;
+  --text-code: 13px/20px;
+}
+:root[data-widget-theme="dark"] {
+  color-scheme: dark;
+  --surface: #171717;
+  --surface-muted: #262626;
+  --text: #E5E5E5;
+  --text-muted: #A1A1AA;
+  --border: rgba(229, 229, 229, 0.12);
+  --brand: #6054F1;
+  --brand-soft: #1A1759;
+  --brand-soft-strong: #3C2ECA;
+  --brand-text: #CFD8FF;
+  --chart-series-1: #4B3FE3;
+  --accent-soft: #123F3C;
+  --accent-text: #CCFBF1;
+}
+.widget {
+  color: var(--text);
+  background: transparent;
+  font: var(--weight-regular) var(--text-body) var(--font-sans);
+  letter-spacing: 0;
+}
+.arch-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  padding: var(--spacer-20);
+}
+.arch-title {
+  font: var(--weight-medium) var(--text-title) var(--font-sans);
+  color: var(--text);
+  margin: 0 0 var(--spacer-4) 0;
+}
+.arch-sub {
+  font: var(--weight-regular) var(--text-caption) var(--font-sans);
+  color: var(--text-muted);
+  margin: 0 0 var(--spacer-16) 0;
+}
+.arch-svg-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+.arch-svg-wrap svg {
+  width: 100%;
+  height: auto;
+  min-width: 680px;
+  display: block;
+}
+.legend-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacer-16);
+  margin-top: var(--spacer-16);
+  padding-top: var(--spacer-12);
+  border-top: 1px dashed var(--border);
+}
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacer-8);
+  font: var(--weight-regular) var(--text-caption) var(--font-sans);
+  color: var(--text-muted);
+}
+.legend-swatch {
+  width: 14px;
+  height: 14px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+.legend-swatch.brand { background: var(--brand-soft); border-color: var(--brand); }
+.legend-line {
+  width: 22px;
+  height: 0;
+  border-top: 2px solid var(--text-muted);
+}
+.legend-line.brand-dash {
+  border-top: 2px dashed var(--brand);
+}
+</style>
+
+<div class="widget arch-card" data-dynamic-ui-widget data-template="architecture-elements">
+  <h3 class="arch-title">校园生活服务平台 · 三层架构</h3>
+  <p class="arch-sub">React 前端 · Express 后端 · SQLite 数据库 — 焦点路径为「学生查看课表」的请求链路</p>
+
+  <div class="arch-svg-wrap">
+    <svg viewBox="0 0 720 620" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="三层架构图">
+      <defs>
+        <marker id="arrow-neutral" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto">
+          <path d="M1 1 L7 4 L1 7 Z" fill="var(--text-muted)"/>
+        </marker>
+        <marker id="arrow-brand" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto">
+          <path d="M1 1 L7 4 L1 7 Z" fill="var(--brand)"/>
+        </marker>
+      </defs>
+
+      <!-- 前端层边界 -->
+      <rect x="24" y="24" width="672" height="150" rx="12" fill="none" stroke="var(--border)" stroke-width="1.5" stroke-dasharray="6 5"/>
+      <text x="40" y="46" font-family="var(--font-sans)" font-size="12" font-weight="600" fill="var(--text-muted)">前端层 · React</text>
+
+      <!-- 前端页面节点（4+3 布局） -->
+      <!-- 第一行 -->
+      <g>
+        <rect x="40" y="60" width="120" height="46" rx="8" fill="var(--brand-soft)" stroke="var(--brand)" stroke-width="1.5"/>
+        <text x="100" y="80" text-anchor="middle" font-family="var(--font-sans)" font-size="13" font-weight="600" fill="var(--brand-text)">课表页</text>
+        <text x="100" y="96" text-anchor="middle" font-family="var(--font-sans)" font-size="11" fill="var(--brand)">SchedulePage</text>
+      </g>
+      <g>
+        <rect x="180" y="60" width="120" height="46" rx="8" fill="var(--surface)" stroke="var(--border)"/>
+        <text x="240" y="80" text-anchor="middle" font-family="var(--font-sans)" font-size="13" font-weight="500" fill="var(--text)">首页</text>
+        <text x="240" y="96" text-anchor="middle" font-family="var(--font-sans)" font-size="11" fill="var(--text-muted)">HomePage</text>
+      </g>
+      <g>
+        <rect x="320" y="60" width="120" height="46" rx="8" fill="var(--surface)" stroke="var(--border)"/>
+        <text x="380" y="80" text-anchor="middle" font-family="var(--font-sans)" font-size="13" font-weight="500" fill="var(--text)">食堂点评页</text>
+        <text x="380" y="96" text-anchor="middle" font-family="var(--font-sans)" font-size="11" fill="var(--text-muted)">CanteenPage</text>
+      </g>
+      <g>
+        <rect x="460" y="60" width="120" height="46" rx="8" fill="var(--surface)" stroke="var(--border)"/>
+        <text x="520" y="80" text-anchor="middle" font-family="var(--font-sans)" font-size="13" font-weight="500" fill="var(--text)">二手交易页</text>
+        <text x="520" y="96" text-anchor="middle" font-family="var(--font-sans)" font-size="11" fill="var(--text-muted)">MarketPage</text>
+      </g>
+      <!-- 第二行 -->
+      <g>
+        <rect x="40" y="118" width="120" height="46" rx="8" fill="var(--surface)" stroke="var(--border)"/>
+        <text x="100" y="138" text-anchor="middle" font-family="var(--font-sans)" font-size="13" font-weight="500" fill="var(--text)">失物招领页</text>
+        <text x="100" y="154" text-anchor="middle" font-family="var(--font-sans)" font-size="11" fill="var(--text-muted)">LostFoundPage</text>
+      </g>
+      <g>
+        <rect x="180" y="118" width="120" height="46" rx="8" fill="var(--surface)" stroke="var(--border)"/>
+        <text x="240" y="138" text-anchor="middle" font-family="var(--font-sans)" font-size="13" font-weight="500" fill="var(--text)">登录注册页</text>
+        <text x="240" y="154" text-anchor="middle" font-family="var(--font-sans)" font-size="11" fill="var(--text-muted)">AuthPage</text>
+      </g>
+      <g>
+        <rect x="320" y="118" width="120" height="46" rx="8" fill="var(--surface)" stroke="var(--border)"/>
+        <text x="380" y="138" text-anchor="middle" font-family="var(--font-sans)" font-size="13" font-weight="500" fill="var(--text)">个人中心页</text>
+        <text x="380" y="154" text-anchor="middle" font-family="var(--font-sans)" font-size="11" fill="var(--text-muted)">ProfilePage</text>
+      </g>
+
+      <!-- 后端层边界 -->
+      <rect x="24" y="214" width="672" height="150" rx="12" fill="none" stroke="var(--border)" stroke-width="1.5" stroke-dasharray="6 5"/>
+      <text x="40" y="236" font-family="var(--font-sans)" font-size="12" font-weight="600" fill="var(--text-muted)">后端层 · Express (Node.js)</text>
+
+      <!-- 后端模块节点 -->
+      <g>
+        <rect x="40" y="250" width="120" height="46" rx="8" fill="var(--brand-soft)" stroke="var(--brand)" stroke-width="1.5"/>
+        <text x="100" y="270" text-anchor="middle" font-family="var(--font-sans)" font-size="13" font-weight="600" fill="var(--brand-text)">课表处理</text>
+        <text x="100" y="286" text-anchor="middle" font-family="var(--font-sans)" font-size="11" fill="var(--brand)">scheduleRouter</text>
+      </g>
+      <g>
+        <rect x="180" y="250" width="120" height="46" rx="8" fill="var(--surface)" stroke="var(--border)"/>
+        <text x="240" y="270" text-anchor="middle" font-family="var(--font-sans)" font-size="13" font-weight="500" fill="var(--text)">用户认证</text>
+        <text x="240" y="286" text-anchor="middle" font-family="var(--font-sans)" font-size="11" fill="var(--text-muted)">authRouter</text>
+      </g>
+      <g>
+        <rect x="320" y="250" width="120" height="46" rx="8" fill="var(--surface)" stroke="var(--border)"/>
+        <text x="380" y="270" text-anchor="middle" font-family="var(--font-sans)" font-size="13" font-weight="500" fill="var(--text)">食堂评价</text>
+        <text x="380" y="286" text-anchor="middle" font-family="var(--font-sans)" font-size="11" fill="var(--text-muted)">canteenRouter</text>
+      </g>
+      <g>
+        <rect x="460" y="250" width="120" height="46" rx="8" fill="var(--surface)" stroke="var(--border)"/>
+        <text x="520" y="270" text-anchor="middle" font-family="var(--font-sans)" font-size="13" font-weight="500" fill="var(--text)">二手交易</text>
+        <text x="520" y="286" text-anchor="middle" font-family="var(--font-sans)" font-size="11" fill="var(--text-muted)">marketRouter</text>
+      </g>
+      <g>
+        <rect x="600" y="250" width="84" height="46" rx="8" fill="var(--surface)" stroke="var(--border)"/>
+        <text x="642" y="270" text-anchor="middle" font-family="var(--font-sans)" font-size="13" font-weight="500" fill="var(--text)">失物招领</text>
+        <text x="642" y="286" text-anchor="middle" font-family="var(--font-sans)" font-size="11" fill="var(--text-muted)">lostRouter</text>
+      </g>
+      <!-- 中间件提示 -->
+      <g>
+        <rect x="180" y="308" width="360" height="40" rx="8" fill="var(--surface-muted)" stroke="var(--border)" stroke-dasharray="3 3"/>
+        <text x="360" y="328" text-anchor="middle" font-family="var(--font-sans)" font-size="12" fill="var(--text-muted)">JWT 中间件 · 鉴权 · 请求日志 · 错误处理</text>
+        <text x="360" y="342" text-anchor="middle" font-family="var(--font-mono)" font-size="11" fill="var(--text-muted)">app.use(authMiddleware)</text>
+      </g>
+
+      <!-- 数据库层边界 -->
+      <rect x="24" y="404" width="672" height="170" rx="12" fill="none" stroke="var(--border)" stroke-width="1.5" stroke-dasharray="6 5"/>
+      <text x="40" y="426" font-family="var(--font-sans)" font-size="12" font-weight="600" fill="var(--text-muted)">数据库层 · SQLite</text>
+
+      <!-- 数据库表节点 -->
+      <g>
+        <rect x="40" y="440" width="120" height="46" rx="8" fill="var(--brand-soft)" stroke="var(--brand)" stroke-width="1.5"/>
+        <text x="100" y="460" text-anchor="middle" font-family="var(--font-sans)" font-size="13" font-weight="600" fill="var(--brand-text)">课表表</text>
+        <text x="100" y="476" text-anchor="middle" font-family="var(--font-mono)" font-size="11" fill="var(--brand)">schedules</text>
+      </g>
+      <g>
+        <rect x="180" y="440" width="120" height="46" rx="8" fill="var(--surface)" stroke="var(--border)"/>
+        <text x="240" y="460" text-anchor="middle" font-family="var(--font-sans)" font-size="13" font-weight="500" fill="var(--text)">用户表</text>
+        <text x="240" y="476" text-anchor="middle" font-family="var(--font-mono)" font-size="11" fill="var(--text-muted)">users</text>
+      </g>
+      <g>
+        <rect x="320" y="440" width="120" height="46" rx="8" fill="var(--surface)" stroke="var(--border)"/>
+        <text x="380" y="460" text-anchor="middle" font-family="var(--font-sans)" font-size="13" font-weight="500" fill="var(--text)">食堂表</text>
+        <text x="380" y="476" text-anchor="middle" font-family="var(--font-mono)" font-size="11" fill="var(--text-muted)">canteens</text>
+      </g>
+      <g>
+        <rect x="460" y="440" width="120" height="46" rx="8" fill="var(--surface)" stroke="var(--border)"/>
+        <text x="520" y="460" text-anchor="middle" font-family="var(--font-sans)" font-size="13" font-weight="500" fill="var(--text)">评价表</text>
+        <text x="520" y="476" text-anchor="middle" font-family="var(--font-mono)" font-size="11" fill="var(--text-muted)">reviews</text>
+      </g>
+      <g>
+        <rect x="40" y="498" width="120" height="46" rx="8" fill="var(--surface)" stroke="var(--border)"/>
+        <text x="100" y="518" text-anchor="middle" font-family="var(--font-sans)" font-size="13" font-weight="500" fill="var(--text)">二手物品表</text>
+        <text x="100" y="534" text-anchor="middle" font-family="var(--font-mono)" font-size="11" fill="var(--text-muted)">items</text>
+      </g>
+      <g>
+        <rect x="180" y="498" width="120" height="46" rx="8" fill="var(--surface)" stroke="var(--border)"/>
+        <text x="240" y="518" text-anchor="middle" font-family="var(--font-sans)" font-size="13" font-weight="500" fill="var(--text)">失物招领表</text>
+        <text x="240" y="534" text-anchor="middle" font-family="var(--font-mono)" font-size="11" fill="var(--text-muted)">lost_found</text>
+      </g>
+
+      <!-- 焦点路径：课表页 → 课表处理 → 课表表 (品牌色虚线) -->
+      <path d="M 100 106 L 100 250" fill="none" stroke="var(--brand)" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#arrow-brand)"/>
+      <path d="M 100 296 L 100 440" fill="none" stroke="var(--brand)" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#arrow-brand)"/>
+
+      <!-- 其他前后端连接（中性实线，代表性连线） -->
+      <path d="M 240 106 L 240 250" fill="none" stroke="var(--text-muted)" stroke-width="1.2" marker-end="url(#arrow-neutral)"/>
+      <path d="M 380 106 L 380 250" fill="none" stroke="var(--text-muted)" stroke-width="1.2" marker-end="url(#arrow-neutral)"/>
+      <path d="M 520 106 L 520 250" fill="none" stroke="var(--text-muted)" stroke-width="1.2" marker-end="url(#arrow-neutral)"/>
+
+      <!-- 其他后端-数据库连接（中性实线） -->
+      <path d="M 240 296 L 240 440" fill="none" stroke="var(--text-muted)" stroke-width="1.2" marker-end="url(#arrow-neutral)"/>
+      <path d="M 380 296 L 380 440" fill="none" stroke="var(--text-muted)" stroke-width="1.2" marker-end="url(#arrow-neutral)"/>
+      <path d="M 520 296 L 520 440" fill="none" stroke="var(--text-muted)" stroke-width="1.2" marker-end="url(#arrow-neutral)"/>
+      <path d="M 642 296 L 642 360 Q 642 380 500 380 L 240 498" fill="none" stroke="var(--text-muted)" stroke-width="1.2" marker-end="url(#arrow-neutral)"/>
+      <path d="M 460 296 Q 300 380 200 498" fill="none" stroke="var(--text-muted)" stroke-width="1.2" marker-end="url(#arrow-neutral)"/>
+
+      <!-- 焦点路径标签 -->
+      <g>
+        <rect x="112" y="170" width="76" height="20" rx="10" fill="var(--surface)" stroke="var(--brand)" stroke-width="1"/>
+        <text x="150" y="184" text-anchor="middle" font-family="var(--font-sans)" font-size="11" font-weight="600" fill="var(--brand)">GET /api/schedule</text>
+      </g>
+      <g>
+        <rect x="112" y="356" width="84" height="20" rx="10" fill="var(--surface)" stroke="var(--brand)" stroke-width="1"/>
+        <text x="154" y="370" text-anchor="middle" font-family="var(--font-sans)" font-size="11" font-weight="600" fill="var(--brand)">SELECT * WHERE user_id</text>
+      </g>
+    </svg>
+  </div>
+
+  <div class="legend-row">
+    <span class="legend-item"><span class="legend-swatch brand"></span>焦点路径节点（课表查询链路）</span>
+    <span class="legend-item"><span class="legend-swatch"></span>普通模块 / 数据表</span>
+    <span class="legend-item"><span class="legend-line brand-dash"></span>请求主路径</span>
+    <span class="legend-item"><span class="legend-line"></span>其他依赖调用</span>
+  </div>
+</div>
