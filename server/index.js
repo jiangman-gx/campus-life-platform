@@ -1,3 +1,5 @@
+import path from 'path'
+import { fileURLToPath } from 'url'
 import 'dotenv/config'
 import express from 'express'
 import cors from 'cors'
@@ -8,6 +10,9 @@ import lostFoundRouter from './routes/lost-found.js'
 import authRouter from './routes/auth.js'
 import aiRouter from './routes/ai.js'
 import { initDatabase } from './database/init.js'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 const app = express()
 const PORT = process.env.PORT || 3001
@@ -22,13 +27,21 @@ app.use((req, res, next) => {
   next()
 })
 
-// 挂载路由
+// 挂载 API 路由（必须在静态文件之前）
 app.use('/api/canteens', canteensRouter)
 app.use('/api/reviews', reviewsRouter)
 app.use('/api/items', itemsRouter)
 app.use('/api/lost-found', lostFoundRouter)
 app.use('/api/auth', authRouter)
 app.use('/api/ai', aiRouter)
+
+// 生产环境：serve 前端静态文件
+app.use(express.static(path.join(__dirname, '..', 'dist')))
+
+// SPA fallback：所有非 API 请求返回 index.html
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'dist', 'index.html'))
+})
 
 // 启动服务器（在数据库初始化之后）
 async function startServer() {

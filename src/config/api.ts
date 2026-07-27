@@ -6,7 +6,7 @@
 // ============================================================
 
 /** 后端 API 基础地址 */
-export const API_BASE = 'https://campus-life-platform-production.up.railway.app'
+export const API_BASE = ''
 
 /**
  * 拼接完整 API 地址
