@@ -39,7 +39,7 @@ app.use('/api/ai', aiRouter)
 app.use(express.static(path.join(__dirname, '..', 'dist')))
 
 // SPA fallback：所有非 API 请求返回 index.html
-app.get('*', (req, res) => {
+app.use((req, res) => {
   res.sendFile(path.join(__dirname, '..', 'dist', 'index.html'))
 })
 
